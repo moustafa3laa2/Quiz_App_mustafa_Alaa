@@ -1,77 +1,88 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const QuizTime());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  // This widget is the root of your application.
+class QuizTime extends StatelessWidget {
+  const QuizTime({super.key});
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: Text('Quiz App tit8-2023',style: TextStyle(fontWeight: FontWeight.bold),),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'MUSTAFA ALAA AHMED',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold,
-              color: Color(0xFFD3BBFF)),
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        backgroundColor: const Color(0xFF00204A),
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          toolbarHeight: 15,
+        ),
+        body: Container(
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage("images/wall2.jpg"),
+              fit: BoxFit.cover,
             ),
-            const Text(
-              'You have pushed the button this many times:',
-              style: TextStyle(fontWeight: FontWeight.bold,
-              fontSize: 18),
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const SizedBox(
+                    height: 150,
+                  ),
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(90),
+                    child: Image.asset(
+                      "images/quizTime1.jpg",
+                      width: 180,
+                      height: 180,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  const Text(
+                    "ITI Quiz App",
+                    style: TextStyle(
+                        fontSize: 32,
+                        fontFamily: "Pacifico",
+                        color: Color(0xFFFAE042)),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  const Text(
+                    "We Are Creative ,Enjoy Our App",
+                    style: TextStyle(
+                        fontSize: 28,
+                        color: Colors.white,
+                        fontFamily: "DancingScript"),
+                  ),
+                  const SizedBox(
+                    height: 150,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    child: const Text(
+                      "Start",
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.green,
+                        fixedSize: const Size(350, 20)),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), 
     );
   }
 }
