@@ -1,5 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quizz_app_mustafa_alaa/screens/login_screen.dart';
 
 class FirstScreen extends StatelessWidget {
   const FirstScreen({super.key});
@@ -18,7 +18,9 @@ class FirstScreen extends StatelessWidget {
         ),
         child: Column(
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.3,),
+            SizedBox(
+              height: MediaQuery.of(context).size.height * 0.3,
+            ),
             Image.asset(
               "assets/images/quizTime.png",
               width: MediaQuery.of(context).size.width * 0.5,
@@ -47,9 +49,16 @@ class FirstScreen extends StatelessWidget {
             Container(
               //height: MediaQuery.of(context).size.height,
               width: MediaQuery.of(context).size.width * 0.9,
-              
+
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => const LoginScreen(),
+                    ),
+                  );
+                },
                 child: Text(
                   "Start",
                   style: TextStyle(fontSize: 20),

@@ -1,6 +1,5 @@
-import 'dart:ffi';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:quizz_app_mustafa_alaa/screens/category_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -8,151 +7,174 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        color: const Color(0xff2c752E),
-        child: Stack(
-          children: [
-            Positioned(
-              top: MediaQuery.of(context).size.height * 0.3,
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.7,
-                width: MediaQuery.of(context).size.width,
-                decoration: const BoxDecoration(
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(40),
-                    topRight: Radius.circular(40),
-                  ),
-                  color: Color(0xffEFECEC),
-                ),
-              ),
-            ),
-            Column(
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.07,
-                ),
-                Image.asset(
+      body: Stack(
+        alignment: Alignment.bottomCenter,
+        children: [
+          Align(
+            alignment: Alignment.topCenter,
+            child: Container(
+              height: MediaQuery.of(context).size.height * 0.4,
+              width: MediaQuery.of(context).size.width,
+              color: const Color(0xff2c752E),
+              child: Center(
+                child: Image.asset(
                   "assets/images/logo.png",
                   height: MediaQuery.of(context).size.height * 0.2,
                 ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                ),
-                const Text(
-                  "Login",
-                  style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.04,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
+              ),
+            ),
+          ),
+          Container(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.height * 0.7,
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 219, 216, 216),
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(60),
+                topRight: Radius.circular(60),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(20),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.04,
+                  ),
+                  const Text(
+                    "Login",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.03,
+                  ),
+                  TextField(
                     decoration: InputDecoration(
-                      prefixIcon: const Icon(Icons.person),
                       hintText: "Username",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      prefixIcon: const Icon(Icons.person),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Colors.green,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(40),
                       ),
                     ),
                   ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 30),
-                  child: TextField(
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  TextField(
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
-                      suffixIcon: const Icon(Icons.remove_red_eye),
-                      hintText: "password",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(30),
+                      hintText: "Password",
+                      suffixIcon: const Icon(Icons.visibility_off),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Colors.grey,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(40),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: const BorderSide(
+                          color: Colors.green,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(40),
                       ),
                     ),
                   ),
-                ),
-                Container(
-                  margin: EdgeInsets.only(
-                      right: MediaQuery.of(context).size.width * 0.08),
-                  child: Row(
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.01,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      const Text("New to quiz app?"),
-                      TextButton(
-                        onPressed: () {},
+                      const Text("New To Quiz App?"),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width * 0.05,
+                      ),
+                      GestureDetector(
+                        onTap: () {},
                         child: const Text(
                           "Register",
                           style: TextStyle(
+                              color: Color(0xff2c752E),
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.04,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (BuildContext context) =>
+                              const CategoryScreen(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      "Login",
+                    ),
+                    style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xff2c752E),
+                        elevation: 15,
+                        minimumSize: const Size(130, 40),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        )),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  const Icon(
+                    Icons.fingerprint,
+                    size: 60,
+                    color: Colors.blue,
+                  ),
+                  const Text(
+                    "Use Touch ID",
+                  ),
+                  const Spacer(),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Checkbox(value: true, onChanged: (mustafa) {}),
+                          const Text("Remember Me"),
+                        ],
+                      ),
+                      InkWell(
+                        onTap: () {},
+                        child: const Text(
+                          "Forget Password?",
+                          style: TextStyle(
                             color: Color(0xff2c752E),
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xff2c752E),
-                    borderRadius: BorderRadius.circular(20),
-                    boxShadow: const [
-                      BoxShadow(
-                        color: Colors.grey,
-                        spreadRadius: 4,
-                        blurRadius: 6,
-                      )
-                    ],
-                  ),
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.3,
-                  child: OutlinedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Login",
-                      style: TextStyle(fontSize: 20, color: Colors.white),
-                    ),
-                    style: ElevatedButton.styleFrom(
-                      shadowColor: Colors.black,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.02,
-                ),
-                const Icon(
-                  Icons.fingerprint,
-                  size: 60,
-                  color: Color(0xff1892F3),
-                ),
-                const Text(
-                  "Use Touch ID",
-                  style: TextStyle(
-                    color: Color(0xffA0A0A0),
-                  ),
-                ),
-                SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    const Text("remember me"),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "Forget Password?",
-                        style: TextStyle(color: Color(0xff2c752E)),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+                ],
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
