@@ -10,8 +10,8 @@ class ScoreScreen extends StatelessWidget {
       body: Column(
         children: [
           SizedBox(height: MediaQuery.of(context).size.height * 0.3,),
-          Padding(
-            padding: const EdgeInsets.only(right: 20 , left: 20),
+          const Padding(
+            padding:  EdgeInsets.only(right: 20 , left: 20),
             child: Text(
               "Hello , Mustafa Your Score Is 10 /10",
               style: TextStyle(
@@ -26,11 +26,11 @@ class ScoreScreen extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {
-              Navigator.push(
+              Navigator.pushAndRemoveUntil<void>(
                 context,
                 MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const FirstScreen(),
-                ),
+                  builder: (BuildContext context) => const FirstScreen(),),
+                  (Route<dynamic> route) => false,
               );
             },
             style: 

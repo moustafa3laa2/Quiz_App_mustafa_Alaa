@@ -10,14 +10,17 @@ class Quiz extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: const Color(0xff7E57C2),
         title: const Text("Sport Test"),
-        titleSpacing: MediaQuery.of(context).size.width * 0.18,
+        centerTitle: true,
         leading: const Center(
           child: Text(
             "1 / 10",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        actions: [Image.asset("assets/images/sportsQuis.png")],
+        actions: [Padding(
+          padding: const EdgeInsetsDirectional.all(3),
+          child: Image.asset("assets/images/sportsQuis.png",),
+        )],
       ),
       body: Column(
         children: [
@@ -31,26 +34,29 @@ class Quiz extends StatelessWidget {
                 color: const Color(0xffF6F1F8),
                 border: Border.all(
                   width: 1,
-                  color: Color.fromARGB(255, 208, 166, 224),
+                  color: const Color.fromARGB(255, 208, 166, 224),
                 ),
               ),
-              child: const Column(
-                children: [
-                  Text(
-                    "Question 1",
-                    style: TextStyle(
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
+              child: const Padding(
+                padding:  EdgeInsets.all(8.0),
+                child:  Column(
+                  children: [
+                    Text(
+                      "Question 1",
+                      style: TextStyle(
+                        fontSize: 40,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                  Text(
-                    "What is the nickname for Arsenal FC?",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                    Text(
+                      "What is the nickname for Arsenal FC?",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
@@ -99,7 +105,7 @@ class Quiz extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
                 
               ),
-              minimumSize: Size(150, 40),
+              minimumSize: const Size(150, 40),
             ),
             child: const Text(
               "The Gunners",
@@ -125,7 +131,7 @@ class Quiz extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20)
               ),
-               minimumSize: Size(150, 40),
+               minimumSize: const Size(150, 40),
             ),
             child: const Text(
               "Red devils",
@@ -151,7 +157,7 @@ class Quiz extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20)
               ),
-               minimumSize: Size(150, 40),
+               minimumSize: const Size(150, 40),
             ),
             child: const Text(
               "Green Eagels",

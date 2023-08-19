@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizz_app_mustafa_alaa/screens/quiz_question.dart';
+import 'package:quizz_app_mustafa_alaa/screens/login_screen.dart';
 import 'package:quizz_app_mustafa_alaa/screens/quiz_screen.dart';
 
 List quizText = ["Sport Test", "History Test", "General Test"];
