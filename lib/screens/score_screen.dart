@@ -64,4 +64,16 @@ class _ScoreScreenState extends State<ScoreScreen> {
       ),
     );
   }
+
+@override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+
+
+  usernameControler.clear();
+
+  }
+
+
 }
