@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:quizz_app_mustafa_alaa/screens/category_screen.dart';
+import 'package:quizz_app_mustafa_alaa/Global/quiz_data.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final _formKey = GlobalKey<FormState>();
+
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +90,7 @@ class LoginScreen extends StatelessWidget {
                       height: MediaQuery.of(context).size.height * 0.02,
                     ),
                     TextFormField(
+                      controller: usernameControler,
                       validator: (value) {
                         if (value!.isEmpty) {
                           return "*Please Enter Your Username";

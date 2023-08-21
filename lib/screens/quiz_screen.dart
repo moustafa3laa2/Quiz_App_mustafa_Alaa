@@ -1,26 +1,39 @@
 import 'package:flutter/material.dart';
+import 'package:quizz_app_mustafa_alaa/Global/quiz_data.dart';
 import 'package:quizz_app_mustafa_alaa/screens/score_screen.dart';
 
-class Quiz extends StatelessWidget {
-  const Quiz({super.key});
+class Quiz extends StatefulWidget {
+  final Map categoryMap;
+  Quiz({super.key, required this.categoryMap});
+
+  @override
+  State<Quiz> createState() => _QuizState();
+}
+
+class _QuizState extends State<Quiz> {
+  int indx = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xff7E57C2),
-        title: const Text("Sport Test"),
+        backgroundColor: widget.categoryMap["color"],
+        title: Text(widget.categoryMap["categoryName"]),
         centerTitle: true,
-        leading: const Center(
+        leading: Center(
           child: Text(
-            "1 / 10",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+            "${(indx + 1)} / ${(widget.categoryMap["data"] as List).length}",
+            style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
         ),
-        actions: [Padding(
-          padding: const EdgeInsetsDirectional.all(3),
-          child: Image.asset("assets/images/sportsQuis.png",),
-        )],
+        actions: [
+          Padding(
+            padding: const EdgeInsetsDirectional.all(3),
+            child: Image.asset(
+              "assets/images/sportsQuis.png",
+            ),
+          )
+        ],
       ),
       body: Column(
         children: [
@@ -37,20 +50,20 @@ class Quiz extends StatelessWidget {
                   color: const Color.fromARGB(255, 208, 166, 224),
                 ),
               ),
-              child: const Padding(
-                padding:  EdgeInsets.all(8.0),
-                child:  Column(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Column(
                   children: [
                     Text(
-                      "Question 1",
-                      style: TextStyle(
+                      "Question ${indx + 1}",
+                      style: const TextStyle(
                         fontSize: 40,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     Text(
-                      "What is the nickname for Arsenal FC?",
-                      style: TextStyle(
+                      widget.categoryMap["data"][indx]["question"],
+                      style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),
@@ -63,106 +76,42 @@ class Quiz extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.1,
           ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const ScoreScreen(),
-                ),
-              );
-            },
-            style: 
-            ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xff7E57C2),
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)
-              )
+          for (int i = 0;
+              i < (widget.categoryMap["data"][indx]['answers'] as List).length;
+              i++)
+            ElevatedButton(
+              onPressed: () {
+                totalScore += (widget.categoryMap["data"][indx]["answers"][i]
+                    ["score"]) as int;
+                if (indx + 1 < (widget.categoryMap["data"] as List).length) {
+                  setState(() {
+                    indx++;
+                  });
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute<void>(
+                      builder: (BuildContext context) => ScoreScreen(
+                        totalQuestion:
+                            (widget.categoryMap["data"] as List).length,
+                        totalScore: totalScore,
+                      ),
+                    ),
+                  );
+                }
+              },
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: widget.categoryMap["color"],
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20))),
+              child: Text(
+                widget.categoryMap["data"][indx]["answers"][i]["ans"],
+                style: const TextStyle(fontSize: 20),
+              ),
             ),
-            child: const Text(
-              "The Gunners",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const ScoreScreen(),
-                ),
-              );
-            },
-            style: 
-            ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xff7E57C2),
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-                
-              ),
-              minimumSize: const Size(150, 40),
-            ),
-            child: const Text(
-              "The Gunners",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const ScoreScreen(),
-                ),
-              );
-            },
-            style: 
-            ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xff7E57C2),
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)
-              ),
-               minimumSize: const Size(150, 40),
-            ),
-            child: const Text(
-              "Red devils",
-              style: TextStyle(fontSize: 20),
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.03,
-          ),
-          ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute<void>(
-                  builder: (BuildContext context) => const ScoreScreen(),
-                ),
-              );
-            },
-            style: 
-            ElevatedButton.styleFrom(
-              backgroundColor: const Color(0xff7E57C2),
-              elevation: 10,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20)
-              ),
-               minimumSize: const Size(150, 40),
-            ),
-            child: const Text(
-              "Green Eagels",
-              style: TextStyle(fontSize: 20),
-            ),
           ),
         ],
       ),
